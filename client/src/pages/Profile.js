@@ -29,7 +29,7 @@ const Profile = () => {
         try {
             setLoading(true);
 
-            const res = await fetch("http://localhost:5000/api/user/update-profile", {
+            const res = await fetch(`${process.env.REACT_APP_BASE_URL}/api/user/update-profile`, {
                method: "PUT",
                headers: { "Authorization": `Bearer ${token}` },
                body: formData

@@ -17,8 +17,8 @@ const Dashboard = () => {
     setLoading(true);
     try {
       const url = filterDate
-        ? `http://localhost:5000/api/task?dueDate=${filterDate}`
-        : "http://localhost:5000/api/task";
+        ? `${process.env.REACT_APP_BASE_URL}/api/task?dueDate=${filterDate}`
+        : `${process.env.REACT_APP_BASE_URL}/api/task`;
   
       const res = await fetch(url, {
         headers: { Authorization: `Bearer ${token}` },
@@ -37,7 +37,7 @@ const Dashboard = () => {
   const handleAddTask = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5000/api/task/add", {
+      const res = await fetch(`${process.env.REACT_APP_BASE_URL}/api/task/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -57,7 +57,7 @@ const Dashboard = () => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/task/delete/${id}`, {
+      const res = await fetch(`${process.env.REACT_APP_BASE_URL}/api/task/delete/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -73,7 +73,7 @@ const Dashboard = () => {
 
   const handleComplete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/task/update/${id}`, {
+      const res = await fetch(`${process.env.REACT_APP_BASE_URL}/api/task/update/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -99,7 +99,7 @@ const Dashboard = () => {
     e.preventDefault();
     try {
       const res = await fetch(
-        `http://localhost:5000/api/task/update/${editingTask._id}`,
+        `${process.env.REACT_APP_BASE_URL}/api/task/update/${editingTask._id}`,
         {
           method: "PUT",
           headers: {
